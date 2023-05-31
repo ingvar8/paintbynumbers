@@ -171,7 +171,7 @@ export function downloadPalettePng() {
         ctx.strokeStyle = "#888";
         ctx.strokeRect(x, y, cellWidth, cellHeight - 20);
 
-        const nrText = i + "";
+        const nrText = i+1 + "";
         ctx.fillStyle = "black";
         ctx.strokeStyle = "#CCC";
         ctx.font = "20px Tahoma";

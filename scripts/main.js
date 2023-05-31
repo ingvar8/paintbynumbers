@@ -3181,7 +3181,7 @@ define("gui", ["require", "exports", "common", "guiprocessmanager", "settings"],
             ctx.fillRect(x, y, cellWidth, cellHeight - 20);
             ctx.strokeStyle = "#888";
             ctx.strokeRect(x, y, cellWidth, cellHeight - 20);
-            const nrText = i + "";
+            const nrText = i+1 + "";
             ctx.fillStyle = "black";
             ctx.strokeStyle = "#CCC";
             ctx.font = "20px Tahoma";
