@@ -136,7 +136,7 @@ function createPaletteHtml(colorsByIndex: RGB[]) {
     let html = "";
     for (let c: number = 0; c < colorsByIndex.length; c++) {
         const style = "background-color: " + `rgb(${colorsByIndex[c][0]},${colorsByIndex[c][1]},${colorsByIndex[c][2]})`;
-        html += `<div class="color" class="tooltipped" style="${style}" data-tooltip="${colorsByIndex[c][0]},${colorsByIndex[c][1]},${colorsByIndex[c][2]}">${c}</div>`;
+        html += `<div class="color" class="tooltipped" style="${style}" data-tooltip="${colorsByIndex[c][0]},${colorsByIndex[c][1]},${colorsByIndex[c][2]}">${c+1}</div>`;
     }
     return $(html);
 }

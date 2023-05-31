@@ -2981,12 +2981,12 @@ define("guiprocessmanager", ["require", "exports", "colorreductionmanagement", "
                         if (addColorLabels) {
                             const txt = document.createElementNS(xmlns, "text");
                             txt.setAttribute("font-family", "Tahoma");
-                            const nrOfDigits = (f.color + "").length;
+                            const nrOfDigits = (f.color+1 + "").length;
                             txt.setAttribute("font-size", (fontSize / nrOfDigits) + "");
                             txt.setAttribute("dominant-baseline", "middle");
                             txt.setAttribute("text-anchor", "middle");
                             txt.setAttribute("fill", fontColor);
-                            txt.textContent = f.color + "";
+                            txt.textContent = f.color+1 + "";
                             const subsvg = document.createElementNS(xmlns, "svg");
                             subsvg.setAttribute("width", f.labelBounds.width * sizeMultiplier + "");
                             subsvg.setAttribute("height", f.labelBounds.height * sizeMultiplier + "");
@@ -3152,7 +3152,7 @@ define("gui", ["require", "exports", "common", "guiprocessmanager", "settings"],
         let html = "";
         for (let c = 0; c < colorsByIndex.length; c++) {
             const style = "background-color: " + `rgb(${colorsByIndex[c][0]},${colorsByIndex[c][1]},${colorsByIndex[c][2]})`;
-            html += `<div class="color" class="tooltipped" style="${style}" data-tooltip="${colorsByIndex[c][0]},${colorsByIndex[c][1]},${colorsByIndex[c][2]}">${c}</div>`;
+            html += `<div class="color" class="tooltipped" style="${style}" data-tooltip="${colorsByIndex[c][0]},${colorsByIndex[c][1]},${colorsByIndex[c][2]}">${c+1}</div>`;
         }
         return $(html);
     }
