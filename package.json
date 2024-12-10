@@ -5,19 +5,24 @@
   "bin": "./src-cli/main.js",
   "scripts": {
     "lite": "lite-server --port 10001",
-    "start": "npm run lite"
+    "start": "npm run lite",
+    "cli": "npx ts-node ./src-cli/main.ts",
+    "build": "node_modules/typescript/bin/tsc --build src/tsconfig.json"
   },
   "author": "drake7707",
   "devDependencies": {
+    "lite-server": "^2.6.1",
     "@types/node": "^20.2.5",
-    "lite-server": "^2.6.1"
+    "node-gyp": "^11.0.0",
+    "typescript": "^5.7.2"
   },
   "dependencies": {
     "@types/jquery": "^3.5.16",
     "@types/materialize-css": "^1.0.11",
     "@types/minimist": "^1.2.2",
-    "canvas": "2.11.2",
+    "canvas": "^2.11.2",
     "minimist": "^1.2.8",
-    "svg2img": "^0.9.4"
+    "svg2img": "^0.9.4",
+    "ts-node": "^10.9.2"
   }
 }
