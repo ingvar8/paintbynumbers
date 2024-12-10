@@ -339,7 +339,7 @@ export class GUIProcessManager {
                 svgPath.setAttribute("d", data);
 
                 if (stroke) {
-                    svgPath.style.stroke = "#000";
+                    svgPath.style.stroke = fontColor;
                 } else {
                     // make the border the same color as the fill color if there is no border stroke
                     // to not have gaps in between facets
