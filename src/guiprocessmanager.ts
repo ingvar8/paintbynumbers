@@ -125,7 +125,7 @@ export class GUIProcessManager {
         tabsOutput.select("kmeans-pane");
         $(".status.kMeans").addClass("active");
 
-        await ColorReducer.applyKMeansClustering(imgData, kmeansImgData, ctx, settings, (kmeans) => {
+        await ColorReducer.applyKMeansClustering(imgData, kmeansImgData, settings, (kmeans) => {
             const progress = (100 - (kmeans.currentDeltaDistanceDifference > 100 ? 100 : kmeans.currentDeltaDistanceDifference)) / 100;
             $("#statusKMeans").css("width", Math.round(progress * 100) + "%");
             ctxKmeans.putImageData(kmeansImgData, 0, 0);

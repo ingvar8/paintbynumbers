@@ -98,7 +98,7 @@ export async function process() {
         await updateOutput();
         const tabsOutput = M.Tabs.getInstance(document.getElementById("tabsOutput")!);
         tabsOutput.select("output-pane");
-    } catch (e) {
+    } catch (e: any) {
         log("Error: " + e.message + " at " + e.stack);
     }
 }
@@ -198,7 +198,7 @@ export function downloadPalettePng() {
 
 export function downloadPNG() {
     if ($("#svgContainer svg").length > 0) {
-        saveSvgAsPng($("#svgContainer svg").get(0), "paintbynumbers.png");
+        saveSvgAsPng(($("#svgContainer svg").get(0) as HTMLElement), "paintbynumbers.png");
     }
 }
 
