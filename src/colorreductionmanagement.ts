@@ -60,7 +60,7 @@ export class ColorReducer {
      *  Applies K-means clustering on the imgData to reduce the colors to
      *  k clusters and then output the result to the given outputImgData
      */
-    public static async applyKMeansClustering(imgData: ImageData, outputImgData: ImageData, ctx: CanvasRenderingContext2D, settings: Settings, onUpdate: ((kmeans: KMeans) => void) | null = null) {
+    public static async applyKMeansClustering(imgData: ImageData, outputImgData: ImageData, settings: Settings, onUpdate: ((kmeans: KMeans) => void) | null = null) {
         const vectors: Vector[] = [];
         let idx = 0;
         let vIdx = 0;

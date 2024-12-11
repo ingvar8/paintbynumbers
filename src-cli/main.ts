@@ -98,7 +98,7 @@ async function main() {
     ctxKmeans.fillRect(0, 0, cKmeans.width, cKmeans.height);
 
     const kmeansImgData = ctxKmeans.getImageData(0, 0, cKmeans.width, cKmeans.height);
-    await ColorReducer.applyKMeansClustering(imgData, kmeansImgData, ctx, settings, (kmeans) => {
+    await ColorReducer.applyKMeansClustering(imgData, kmeansImgData, settings, (kmeans) => {
         const progress = (100 - (kmeans.currentDeltaDistanceDifference > 100 ? 100 : kmeans.currentDeltaDistanceDifference)) / 100;
         ctxKmeans.putImageData(kmeansImgData, 0, 0);
     });
@@ -264,7 +264,7 @@ async function createSVG(facetResult: FacetResult, colorsByIndex: RGB[], sizeMul
 
             let svgStroke = "";
             if (stroke) {
-                svgStroke = "#000";
+                svgStroke = fontColor;
             } else {
                 // make the border the same color as the fill color if there is no border stroke
                 // to not have gaps in between facets
@@ -303,18 +303,21 @@ async function createSVG(facetResult: FacetResult, colorsByIndex: RGB[], sizeMul
                 const labelOffsetY = f.labelBounds.minY * sizeMultiplier;
                 const labelWidth = f.labelBounds.width * sizeMultiplier;
                 const labelHeight = f.labelBounds.height * sizeMultiplier;
-
-                //     const svgLabelString = `<g class="label" transform="translate(${labelOffsetX},${labelOffsetY})">
-                //     <svg width="${labelWidth}" height="${labelHeight}" overflow="visible" viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid meet">
-                //         <rect xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="rgb(255,255,255,0.5)" x="-50" y="-50"/>
-                //         <text font-family="Tahoma" font-size="60" dominant-baseline="middle" text-anchor="middle">${f.color}</text>
-                //     </svg>
-                //    </g>`;
-
+                const labelArea = labelWidth * labelHeight;
                 const nrOfDigits = (f.color+1 + "").length;
+
+                let appliedFontSize = fontSize;
+                if (labelArea >= 80 * 80) {
+                    appliedFontSize -= 20;
+                }
+                if (nrOfDigits >= 2) {
+                    appliedFontSize /= nrOfDigits - 0.7;
+                }
+                appliedFontSize = Math.max(appliedFontSize, 5)
+
                 const svgLabelString = `<g class="label" transform="translate(${labelOffsetX},${labelOffsetY})">
                                         <svg width="${labelWidth}" height="${labelHeight}" overflow="visible" viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid meet">
-                                            <text font-family="Tahoma" font-size="${(fontSize / nrOfDigits)}" dominant-baseline="middle" text-anchor="middle" fill="${fontColor}">${f.color+1}</text>
+                                            <text font-family="Tahoma" font-size="${appliedFontSize}" dominant-baseline="middle" text-anchor="middle" fill="${fontColor}">${f.color+1}</text>
                                         </svg>
                                        </g>`;
 
